@@ -26,27 +26,46 @@ print("""
 4 - Detaylı Tarama (Tüm Port)
 
 """)
+try:
+    islem = int(input("Yapmak İstediğiniz İşlemi Girin\n\n"))
 
-islem = int(input("Yapmak İstediğiniz İşlemi Girin\n\n"))
-
-if (islem == 1):
-    ip_adresi = input("\nIp Adresini Girin\n\n")
-    isIp(ip_adresi)
-    if (flag):
-        os.system("nmap " + ip_adresi)
+    if (islem == 1):
+        ip_adresi = input("\nIp Adresini Girin\n\n")
+        isIp(ip_adresi)
+        if (flag):
+            print("\ntarama yapılıyor..")
+            os.system("nmap " + ip_adresi + " >> /root/" + ip_adresi + ".txt")
+            print("\nKayıt Edildi /root/"+ip_adresi+".txt\n")
+        else:
+            print("\033[93mHATA")
+    elif (islem == 2):
+        ip_adresi = input("\nIp Adresini Girin\n\n")
+        isIp(ip_adresi)
+        if (flag):
+            print("\ntarama yapılıyor..")
+            os.system("nmap -p- -sV " + ip_adresi + " >> /root/" + ip_adresi + ".txt")
+            print("\nKayıt Edildi /root/"+ip_adresi+".txt\n")
+        else:
+            print("\033[93mHATA")
+    elif (islem == 3):
+        ip_adresi = input("\nIp Adresini Girin\n\n")
+        isIp(ip_adresi)
+        if (flag):
+            print("\ntarama yapılıyor..")
+            os.system("nmap -0 " + ip_adresi + " >> /root/" + ip_adresi + ".txt")
+            print("\nKayıt Edildi /root/"+ip_adresi+".txt\n")
+        else:
+            print("\033[93mHATA")
+    elif (islem == 4):
+        ip_adresi = input("\nIp Adresini Girin\n\n")
+        isIp(ip_adresi)
+        if (flag):
+            print("\ntarama yapılıyor..")
+            os.system("nmap -p- -sV -A " + ip_adresi + " >> /root/" + ip_adresi + ".txt")
+            print("\nKayıt Edildi /root/"+ip_adresi+".txt\n")
+        else:
+            print("\033[93mHATA")
     else:
-        print("olmadı")
-elif (islem == 2):
-    ip_adresi = input("\nIp Adresini Girin\n\n")
-    isIp(ip_adresi)
-    os.system("nmap -p- -sV " + ip_adresi)
-elif (islem == 3):
-    ip_adresi = input("\nIp Adresini Girin\n\n")
-    isIp(ip_adresi)
-    os.system("nmap -0 " + ip_adresi)
-elif (islem == 4):
-    ip_adresi = input("\nIp Adresini Girin\n\n")
-    isIp(ip_adresi)
-    os.system("nmap -p- -sV -A " + ip_adresi)
-else:
-    print("Yanlış Değer Girdiniz")
+        print("Yanlış Değer Girdiniz")
+except:
+    print("\n\033[93mHATA")
